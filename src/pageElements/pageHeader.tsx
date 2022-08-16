@@ -1,12 +1,14 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
 function PageHeader() {
+    const navigate = useNavigate();
     return (
         <div>
             <div className="hcContentContainer bgColorBrand1 hcMarginBottom1">
                 <header className=" hcPageHeaderSimple hcBasicSideMargin">
                     <div className="hcBrand">
-                        <div className="hcBrandLogo">
+                        <div className="hcBrandLogo" onClick={() => {navigate("/")}}>
                             <div className="hcTitle">eCodices NL</div>
                         </div>
                     </div>

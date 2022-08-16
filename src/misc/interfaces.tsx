@@ -32,6 +32,35 @@ export interface IFacetCandidate {
     candidate: string
 }
 
+export interface IRemoveFacet {
+    (field: string, value: string): void
+}
+
+export interface IResultItem {
+    summary: string,
+    material: string,
+    xml: string,
+    binding: string,
+    place: string,
+    title: string,
+    type: string,
+    decoration: string,
+    tempDate: string,
+    origDate: string,
+    settelement: string,
+    language: string
+}
+
+export interface IResultList {
+    amount: number,
+    pages: number,
+    items: IResultItem[]
+}
+
 export interface ISendPage {
     (data: number): void
+}
+
+export interface IResetFacets {
+    (): void
 }

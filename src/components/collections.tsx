@@ -51,7 +51,7 @@ function Collections() {
                 <div>Loading...</div>
             ) : (
                 <div>
-                <div className="hcClickable" onClick={() => {goSearch("all")}}>All collections (6529)</div><br/>
+                <div className="hcClickable" onClick={() => {goSearch("all")}}>All collections (412)</div><br/>
             {data.map((item, index) => {
                 return (
                     <Fragment><div className="hcClickable" onClick={() => {goSearch(item.key)}} key={index}>{item.key} ({item.doc_count})</div><br/></Fragment>
