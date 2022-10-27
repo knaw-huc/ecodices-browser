@@ -9,6 +9,16 @@ export interface ISearchValues {
     values: string[]
 }
 
+export interface IListValues {
+    title: string,
+    _id: string
+}
+
+export interface IListData {
+    amount: number,
+    items: IListValues[]
+}
+
 export interface ISearchObject {
     searchvalues: ISearchValues[],
     page: number,
@@ -37,7 +47,9 @@ export interface IRemoveFacet {
 }
 
 export interface IResultItem {
+    _id?: string,
     summary: string,
+    collection: string,
     material: string,
     xml: string,
     binding: string,
@@ -47,9 +59,11 @@ export interface IResultItem {
     decoration: string,
     tempDate: string,
     origDate: string,
-    settelement: string,
-    language: string
+    settlement: string,
+    language: string,
+    shelfmark: string
 }
+
 
 export interface IResultList {
     amount: number,
@@ -63,4 +77,9 @@ export interface ISendPage {
 
 export interface IResetFacets {
     (): void
+}
+
+export interface ICollection_item {
+    title: string,
+    "_id": string
 }

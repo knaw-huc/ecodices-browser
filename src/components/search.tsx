@@ -14,6 +14,8 @@ import {
 import {Base64} from "js-base64";
 import FreeTextFacet from "../facets/freeTextFacet";
 import ListFacet from "../facets/listFacet";
+import SecListFacet from "../facets/secListFacet";
+import CenturyFacet from "../facets/centuryFacet";
 import {SERVICE, HOME} from "../misc/config";
 import ManuscriptList from "../elements/manuscriptList";
 import {Fragment} from "react";
@@ -27,6 +29,7 @@ function Search() {
     const [refresh, setRefresh] = useState(true);
     const [result, setResult] = useState<IResultList>({amount: 0, pages: 0, items: []});
     const [numberOfItems, setNumberOfItems] = useState(0);
+    const [decorationsYes, setDecorationsYes] = useState(false);
     let navigate = useNavigate();
     document.title = "Search | eCodices NL";
 
@@ -82,7 +85,11 @@ function Search() {
                 searchBuffer.searchvalues = [];
             }
         }
+        if (field === 'Decorations') {
+            setDecorationsYes(false);
+        }
         setSearchStruc(searchBuffer);
+        setRefresh(!refresh);
         navigate('/search/' + Base64.toBase64(JSON.stringify(searchStruc)));
         window.scroll(0, 0);
     }
@@ -93,10 +100,23 @@ function Search() {
         searchBuffer.searchvalues = [];
         setSearchStruc(searchBuffer);
         setRefresh(!refresh);
+        navigate('#search/' + Base64.toBase64(JSON.stringify(searchStruc)));
+        window.scroll(0, 0);
+
     }
 
     const sendCandidate: ISendCandidate = (candidate: IFacetCandidate) => {
         setPage(1);
+        console.log(candidate.field);
+        switch (candidate.field) {
+            case "has_decoration":
+                if (candidate.candidate === 'yes') {
+                    setDecorationsYes(true);
+                } else {
+                    setDecorationsYes(false);
+                }
+                break;
+        }
         if (parameters.searchvalues === []) {
             parameters.searchvalues = [{
                 name: candidate.facet,
@@ -144,16 +164,20 @@ function Search() {
             <div className="hcLayoutFacet-Result hcBasicSideMargin hcMarginBottom15">
                 <div className="hcLayoutFacets">
                     <FreeTextFacet add={sendCandidate}/>
-                    <ListFacet parentCallback={sendCandidate} name="Collection" field="collection"/>
-                    <ListFacet parentCallback={sendCandidate} name="Country of location" field="place"/>
-                    <ListFacet parentCallback={sendCandidate} name="Text Language" field="language"/>
-                    <ListFacet parentCallback={sendCandidate} name="Century" field="origDate"/>
-                    <ListFacet parentCallback={sendCandidate} name="Document type" field="type"/>
-                    <ListFacet parentCallback={sendCandidate} name="Binding" field="binding"/>
-                    <ListFacet parentCallback={sendCandidate} name="Decoration" field="decoration"/>
-                    <ListFacet parentCallback={sendCandidate} name="Material" field="material"/>
-                    <ListFacet parentCallback={sendCandidate} name="Music Notation" field="musicnotation"/>
-                    <ListFacet parentCallback={sendCandidate} name="Pilot Set" field="pilot"/>
+                    <ListFacet parentCallback={sendCandidate} name="Collection" field="collection" flex={true}/>
+                    <ListFacet parentCallback={sendCandidate} name="Place of Origin" field="place" flex={true}/>
+                    <ListFacet parentCallback={sendCandidate} name="Text Language" field="language" flex={true}/>
+                    <CenturyFacet parentCallback={sendCandidate} name="Date of Origin" field="origDate"/>
+                    <ListFacet parentCallback={sendCandidate} name="Document type" field="type" flex={true}/>
+                    <ListFacet parentCallback={sendCandidate} name="Binding" field="binding" flex={true}/>
+                    {decorationsYes ? (
+                        <SecListFacet parentCallback={sendCandidate} name="Decoration" field="decoration" flex={true}/>
+                    ) : (
+                        <ListFacet parentCallback={sendCandidate} name="Decorations" field="has_decoration" flex={false}/>
+                    )}
+
+                    <ListFacet parentCallback={sendCandidate} name="Material" field="material" flex={false}/>
+                    <ListFacet parentCallback={sendCandidate} name="Music Notation" field="musicnotation" flex={false}/>
                 </div>
                 <div className="hcLayoutResults">
                     <div className="hcResultsHeader hcMarginBottom1">
@@ -186,7 +210,7 @@ function Search() {
                         </div>
                     </div>*/}
                     {loading ? (<div className="hcResultListLoading">Loading...</div>) : (
-                        <ManuscriptList result={result}/>)}
+                        <ManuscriptList result={result} filter={parameters.searchvalues} />)}
                 </div>
             </div>
         </div>

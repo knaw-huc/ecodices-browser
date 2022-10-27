@@ -4,9 +4,9 @@ import {IFacetValue, ISendCandidate} from "../misc/interfaces";
 import {useState, useEffect} from "react";
 import {SERVICE} from "../misc/config";
 
-function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: string, flex: boolean}) {
+function CenturyFacet(props: {parentCallback: ISendCandidate, name: string, field: string}) {
     const [data, setData] = useState<IFacetValue[]>([]);
-    const [url, setUrl] = useState(SERVICE + "/facet?name=" + props.field + "&amount=10");
+    const [url, setUrl] = useState(SERVICE + "/facet?name=" + props.field + "&amount=20");
     const [help, setHelp] = useState(false);
     const [loading, setLoading] = useState(true);
     const [more, setMore] = useState(true);
@@ -57,11 +57,14 @@ function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: 
             <div className="hcFacetItems">
                 {!loading ? (<div>
                     {data.map((item, index) => {
-                        return (<div key={index} className="hcFacetItem"  onClick={() => {sendCandidate(item.key)}}><div className="checkBoxLabel"> {item.key} <span className="facetAmount">({item.doc_count})</span></div></div>);
+                        if (item.key.slice(0,1) !== '1') {return (<div key={index} className="hcFacetItem"  onClick={() => {sendCandidate(item.key)}}><div className="checkBoxLabel"> {item.key} <span className="facetAmount">({item.doc_count})</span></div></div>);}
                     })}
-                    {props.flex && (<div className="hcClickable" onClick={changeListLength}>
+                    {data.map((item, index) => {
+                        if (item.key.slice(0,1) === '1') {return (<div key={index} className="hcFacetItem"  onClick={() => {sendCandidate(item.key)}}><div className="checkBoxLabel"> {item.key} <span className="facetAmount">({item.doc_count})</span></div></div>);}
+                    })}
+                    {/*<div className="hcClickable" onClick={changeListLength}>
                         {more ? (<div>More...</div>) : (<div>Less...</div>)}
-                    </div>)}
+                    </div>*/}
                 </div>) : (<div>Loading...</div>)}
                 <div>
                 </div>
@@ -72,4 +75,4 @@ function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: 
 
 }
 
-export default ListFacet;
+export default CenturyFacet;

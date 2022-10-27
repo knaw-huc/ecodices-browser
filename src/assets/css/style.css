@@ -1165,7 +1165,7 @@ flex-direction: row;
 }
 
 .hcLayoutFacets {
-width: 350px;
+width: 500px;
 }
 
 .hcLayoutResults {
@@ -1365,11 +1365,12 @@ height: 100%;
 align-items: baseline;
 line-height: 130%;
 }
-.hcPageHeaderSimple nav a {
+.hcPageHeaderSimple nav a, .hcPageHeaderSimple nav div {
 height: 100%;
 padding: 1.5rem 1rem;
 display: flex;
 align-items: center;
+cursor: pointer;
 }
 .hcPageHeaderSimple nav a:hover {
 background-color: rgba(255, 255, 255, 0.11);
@@ -2343,9 +2344,179 @@ font-size: 14px;
 padding: 4px 6px;
 width: 100px;
 text-align: center;
+cursor: pointer;
 }
 
 .ManuscriptListBtns li:last-child {
 background-color: #3b0b00;
 }
+
+.facsimileList{
+list-style: none;
+}
+
+.facsimileList li{
+display: inline-block;
+font-size: 14px;
+margin-bottom: 10px;
+color: #0087d4;
+}
+
+.facsimileList li:first-child{
+color: #000000;
+}
+
+.detailNav{
+list-style: none;
+}
+
+.detailNav li{
+display: inline-block;
+width: 200px;
+border-top: 1px solid #dddddd;
+border-right: 1px solid #dddddd;
+border-left: 1px solid #dddddd;
+font-size: 14px;
+padding-left: 6px;
+margin-left: 0;
+margin-right: 16px;
+background-color: #eeeeee;
+cursor: pointer;
+}
+
+.detailNav li.detailActive{
+background-color: #ffffff;
+}
+
+.detailArea{
+border: 1px solid #dddddd;
+display: block;
+width: 640px;
+padding: 10px 8px;
+}
+
+.collectionBrowser{
+display: block;
+text-align: center;
+font-size: smaller;
+margin-bottom: 20px;
+border-bottom: 1px solid #dddddd;
+padding-bottom: 20px;
+}
+
+.ecoDetailTable {
+display: table;
+}
+
+.ecoDetailRow {
+display: table-row;
+font-size: 14px;
+}
+
+.ecoLabelCell, .ecoCell {
+display: table-cell;
+padding-bottom: 30px;
+vertical-align: top;
+}
+
+.ecoDetailRow:last-child .ecoLabelCell, .ecoDetailRow:last-child .ecoCell{
+padding-bottom: 4px;
+}
+
+.ecoLabelCell {
+width: 180px;
+border-right: 1px solid #aaa;
+}
+
+.ecoCell{
+padding-left: 20px;
+}
+
+.ecoCellClickable{
+cursor: pointer;
+color: #0087d4;
+}
+
+.detailH3{
+margin-bottom: 20px;
+}
+
+.facsimileImg{
+width: 340px;
+}
+
+.facetAmount{
+display: inline;
+font-weight: bold;
+color: #777777;
+}
+
+.detailBack{
+cursor: pointer;
+font-size: 14px;
+color: #0087d4;
+text-align: right;
+}
+
+.arrowNav{
+display: inline-block;
+font-size: x-large;
+margin-left: 12px;
+cursor: pointer;
+}
+
+.selectNav{
+display: inline-block;
+font-size: small;
+width: 500px;
+margin-left: 12px;
+}
+
+.amountNav{
+display: inline-block;
+font-weight: bold;
+margin-left: 20px;
+}
+
+.backToResults{
+display: inline;
+cursor: pointer;
+color: #0087d4
+}
+
+.hcRow{
+display: table-row;
+width: 1140px;
+}
+
+.hcColumn{
+display: table-cell;
+width: 590px;
+padding-right: 100px;
+}
+
+.puzzle{
+width: 300px;
+border: 1px solid #000000;
+margin: 20px 0 10px 0;
+}
+
+.smallLink{
+cursor: pointer;
+font-size: 14px;
+color: #0087d4;
+}
+
+.smallLink2{
+cursor: pointer;
+font-size: 18px;
+color: #0087d4;
+}
+
+.ecoHomeBox{
+margin-bottom: 40px;
+}
+
+
+
 

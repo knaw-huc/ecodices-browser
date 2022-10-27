@@ -1,8 +1,14 @@
 import React from "react";
-import {IResultItem} from "../misc/interfaces";
+import {useNavigate} from "react-router-dom";
+import {IResultItem, ISearchValues} from "../misc/interfaces";
 import img from "../assets/img/manuscript.jpg";
+import {toBase64} from "js-base64";
+import {stringify} from "querystring";
 
-function ManuscriptListDetails(props: {result: IResultItem}) {
+
+function ManuscriptListDetails(props: {result: IResultItem, index: number, filter: ISearchValues[]}) {
+
+    let navigate = useNavigate();
     return (<div className="hcResultListDetail">
         <h2>{props.result.title}</h2>
         <img className="hcManuscriptImage" src={img}/>
@@ -16,9 +22,12 @@ function ManuscriptListDetails(props: {result: IResultItem}) {
         <hr/>
         <div>
             <ul className="ManuscriptListBtns">
-                <li>Overview</li>
-                <li>Facsimile</li>
-                <li>Description</li>
+                <li onClick={() => {
+                    window.scroll(0, 0);
+                    navigate('/detail/' + props.result._id + "/" + toBase64(JSON.stringify(props.filter)))}
+                }>Description</li>
+                <li>Viewer</li>
+                {/*<li>Description</li>*/}
                 <li>Edit CMDI</li>
             </ul>
         </div>

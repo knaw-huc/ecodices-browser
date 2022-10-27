@@ -4,13 +4,13 @@ import {IFacetValue, ISendCandidate} from "../misc/interfaces";
 import {useState, useEffect} from "react";
 import {SERVICE} from "../misc/config";
 
-function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: string, flex: boolean}) {
+function SecListFacet(props: {parentCallback: ISendCandidate, name: string, field: string, flex: boolean}) {
     const [data, setData] = useState<IFacetValue[]>([]);
     const [url, setUrl] = useState(SERVICE + "/facet?name=" + props.field + "&amount=10");
     const [help, setHelp] = useState(false);
     const [loading, setLoading] = useState(true);
     const [more, setMore] = useState(true);
-    const [hidden, setHidden] = useState(true);
+    const [hidden, setHidden] = useState(false);
 
 
     async function fetchData() {
@@ -21,7 +21,7 @@ function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: 
     }
 
     function sendCandidate(value: string) {
-        props.parentCallback({facet: props.name, field: props.field, candidate: value});
+        props.parentCallback({facet: props.name, field: 'decoration', candidate: value});
     }
 
     function changeListLength() {
@@ -57,8 +57,14 @@ function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: 
             <div className="hcFacetItems">
                 {!loading ? (<div>
                     {data.map((item, index) => {
-                        return (<div key={index} className="hcFacetItem"  onClick={() => {sendCandidate(item.key)}}><div className="checkBoxLabel"> {item.key} <span className="facetAmount">({item.doc_count})</span></div></div>);
-                    })}
+                        if (item.key !== "") {
+                            return (<div key={index} className="hcFacetItem" onClick={() => {
+                                sendCandidate(item.key)
+                            }}>
+                                <div className="checkBoxLabel"> {item.key} <span
+                                    className="facetAmount">({item.doc_count})</span></div>
+                            </div>);
+                        }})}
                     {props.flex && (<div className="hcClickable" onClick={changeListLength}>
                         {more ? (<div>More...</div>) : (<div>Less...</div>)}
                     </div>)}
@@ -72,4 +78,4 @@ function ListFacet(props: {parentCallback: ISendCandidate, name: string, field: 
 
 }
 
-export default ListFacet;
+export default SecListFacet;

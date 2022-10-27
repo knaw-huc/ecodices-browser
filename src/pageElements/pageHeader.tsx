@@ -1,7 +1,20 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import nlImg from "../assets/img/nl.gif";
+import enImg from "../assets/img/en.gif";
 
 function PageHeader() {
+    const [lang, setLang] = useState('en');
+
+    function languageSwitch() {
+        if (lang === 'en' ) {
+            setLang('nl');
+        } else {
+            setLang('en');
+        }
+    }
+
     const navigate = useNavigate();
     return (
         <div>
@@ -14,7 +27,10 @@ function PageHeader() {
                     </div>
 
                     <nav>
-                        <a href="">Test version</a>
+                        <div>persons index</div>
+                        <div>browse & search</div>
+                        <div>about</div>
+                        <div onClick={() => {languageSwitch()}}>{lang === 'en' ? (<img src={nlImg}/>) : (<img src={enImg}/>) }</div>
                     </nav>
                 </header>
             </div>

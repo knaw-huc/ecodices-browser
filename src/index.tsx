@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import Collections from "./components/collections";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import Detail from "./components/detail";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,6 +18,9 @@ root.render(
                 <Route index element={<Collections/>}/>
                 <Route path="search" element={<Search/>}>
                     <Route path=":code" element={<Search/>}/>
+                </Route>
+                <Route path="detail" element={<Detail/>}>
+                    <Route path=":id/:filter" element={<Detail/>}/>
                 </Route>
             </Route>
         </Routes>
