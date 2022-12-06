@@ -72,19 +72,10 @@ function Collections() {
                 </div>
                 <div className="hcColumn">
                     <div className="ecoHomeBox">
-                        <h2>Exposition</h2>
-                        <div><strong>Medieval Aerobics</strong></div>
-                        <div><img className="puzzle" src={puzzle}/></div>
-                        <div className="smallLink">Visit</div>
+                        Text about this database
                     </div>
                     <div className="ecoHomeBox">
-                        <h2>News</h2>
-                        <ul>
-                            <li className="smallLink2">Voynich manuscript deciphered</li>
-                            <li className="smallLink2">Carolingian manuscript found on moon</li>
-                            <li className="smallLink2">Announcement Scribe of the Month</li>
-                        </ul>
-                        <div className="smallLink">More</div>
+
                     </div>
                 </div>
             </div>

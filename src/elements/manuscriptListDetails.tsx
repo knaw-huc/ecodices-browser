@@ -25,7 +25,8 @@ function ManuscriptListDetails(props: {result: IResultItem, index: number, filte
                 <li onClick={() => {
                     window.scroll(0, 0);
                     navigate('/detail/' + props.result._id + "/" + toBase64(JSON.stringify(props.filter)))}
-                }>Description</li>
+                }>Overview</li>
+                <li>Full description</li>
                 <li>Viewer</li>
                 {/*<li>Description</li>*/}
                 <li>Edit CMDI</li>

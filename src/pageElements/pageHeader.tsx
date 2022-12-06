@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import nlImg from "../assets/img/nl.gif";
 import enImg from "../assets/img/en.gif";
+import logo from "../assets/img/logo.png"
 
 function PageHeader() {
     const [lang, setLang] = useState('en');
@@ -22,7 +23,7 @@ function PageHeader() {
                 <header className=" hcPageHeaderSimple hcBasicSideMargin">
                     <div className="hcBrand">
                         <div className="hcBrandLogo" onClick={() => {navigate("/")}}>
-                            <div className="hcTitle">eCodices NL</div>
+                            <img src={logo}/>
                         </div>
                     </div>
 

@@ -35,11 +35,11 @@ function Detail() {
     const [esID, setEsID] = useState<string>(id);
     const [total, setTotal] = useState(0);
     const [listIndex, setListIndex] = useState(0);
-    /*const [collectionItems, setCollectionItems] = useState<ICollection_item[]>([]);
+    const [collectionItems, setCollectionItems] = useState<ICollection_item[]>([]);
     const [overview, setOverview] = useState(true);
     const [annotations, setAnnotations] = useState(false);
     const [biblio, setBiblio] = useState(false);
-    const [collectionFetched, setCollectionFetched] = useState(false);*/
+    const [collectionFetched, setCollectionFetched] = useState(false);
     document.title = "Manuscript | eCodices NL";
 
     async function fetch_data() {
@@ -132,8 +132,7 @@ function Detail() {
                 <div className="hcLayoutFacets">
                     <ul className="facsimileList">
                         <li>Facsimile:</li>
-                        <li>Single page</li>
-                        <li>Double page</li>
+                        <li>Viewer</li>
                         <li>Thumbnails</li>
                     </ul>
                     <img className="facsimileImg" src={img}/>
@@ -143,23 +142,23 @@ function Detail() {
                 <div className="hcResultsHeader hcMarginBottom1">
                     {loading ? (<div>Loading...</div>) : (
                         <div>
-                            {/*<ul className="detailNav">
+                            <ul className="detailNav">
                                 <li className={`${overview ? 'detailActive' : 'detailInactive'}`} onClick={() => {
                                     setAnnotations(false);
                                     setBiblio(false);
                                     setOverview(true);
-                                }}>Document details</li>
+                                }}>Overview</li>
                                 <li className={`${annotations ? 'detailActive' : 'detailInactive'}`} onClick={() => {
                                     setOverview(false);
                                     setBiblio(false);
                                     setAnnotations(true);
-                                }}>Annotations</li>
-                                <li className={`${biblio ? 'detailActive' : 'detailInactive'}`} onClick={() => {
+                                }}>Full description</li>
+                                {/*<li className={`${biblio ? 'detailActive' : 'detailInactive'}`} onClick={() => {
                                     setOverview(false);
                                     setAnnotations(false);
                                     setBiblio(true);
-                                }}>Bibliography</li>
-                            </ul>*/}
+                                }}>Bibliography</li>*/}
+                            </ul>
                             <div className="detailBack" onClick={() => { window.history.back()}}>Back to results</div>
                             <div className="detailArea">
                             <Document item={data}/>

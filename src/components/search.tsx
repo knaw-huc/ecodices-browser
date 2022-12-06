@@ -34,11 +34,21 @@ function Search() {
     document.title = "Search | eCodices NL";
 
     let searchBuffer: ISearchObject = {
-        searchvalues: parameters.searchvalues,
-        page: page,
+        searchvalues: [],
+        page: 1,
         page_length: 500,
         sortorder: "title",
     };
+
+    if (params.code !== undefined) {
+        searchBuffer = {
+            searchvalues: parameters.searchvalues,
+            page: page,
+            page_length: 500,
+            sortorder: "title",
+        };
+    }
+
 
     let facets = parameters.searchvalues;
 
