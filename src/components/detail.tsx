@@ -5,6 +5,7 @@ import img from "../assets/img/M0004.jpg";
 import {HOME, SERVICE} from "../misc/config";
 import {IResultItem, IResultList, ICollection_item, ISearchValues, IListData} from "../misc/interfaces";
 import Document from "../elements/document";
+import ExtendedDocument from "../elements/extendedDocument";
 import {fromBase64} from "js-base64";
 
 function Detail() {
@@ -37,7 +38,7 @@ function Detail() {
     const [listIndex, setListIndex] = useState(0);
     const [collectionItems, setCollectionItems] = useState<ICollection_item[]>([]);
     const [overview, setOverview] = useState(true);
-    const [annotations, setAnnotations] = useState(false);
+    const [fullDesc, setFullDesc] = useState(false);
     const [biblio, setBiblio] = useState(false);
     const [collectionFetched, setCollectionFetched] = useState(false);
     document.title = "Manuscript | eCodices NL";
@@ -89,7 +90,7 @@ function Detail() {
     return (
 
         <div className="hcContentContainer">
-            <div className="collectionBrowser">
+            {/*<div className="collectionBrowser">
                 {listFetched  ? (
                     <div>Select manuscript from <div className="backToResults" onClick={() => {window.history.back()}}>search results</div>:
                         <div className="arrowNav" onClick={() => {
@@ -127,7 +128,7 @@ function Detail() {
                 ) : (
                     <div/>
                 )}
-            </div>
+            </div>*/}
             <div className="hcLayoutFacet-Result hcBasicSideMargin hcMarginBottom15">
                 <div className="hcLayoutFacets">
                     <ul className="facsimileList">
@@ -138,35 +139,44 @@ function Detail() {
                     <img className="facsimileImg" src={img}/>
                 </div>
 
-            <div className="hcLayoutResults">
-                <div className="hcResultsHeader hcMarginBottom1">
-                    {loading ? (<div>Loading...</div>) : (
-                        <div>
-                            <ul className="detailNav">
-                                <li className={`${overview ? 'detailActive' : 'detailInactive'}`} onClick={() => {
-                                    setAnnotations(false);
-                                    setBiblio(false);
-                                    setOverview(true);
-                                }}>Overview</li>
-                                <li className={`${annotations ? 'detailActive' : 'detailInactive'}`} onClick={() => {
-                                    setOverview(false);
-                                    setBiblio(false);
-                                    setAnnotations(true);
-                                }}>Full description</li>
-                                {/*<li className={`${biblio ? 'detailActive' : 'detailInactive'}`} onClick={() => {
+                <div className="hcLayoutResults">
+                    <div className="hcResultsHeader hcMarginBottom1">
+                        {loading ? (<div>Loading...</div>) : (
+                            <div>
+                                <ul className="detailNav">
+                                    <li className={`${overview ? 'detailActive' : 'detailInactive'}`} onClick={() => {
+                                        setFullDesc(false);
+                                        setBiblio(false);
+                                        setOverview(true);
+                                    }}>Overview
+                                    </li>
+                                    <li className={`${fullDesc ? 'detailActive' : 'detailInactive'}`} onClick={() => {
+                                        setOverview(false);
+                                        setBiblio(false);
+                                        setFullDesc(true);
+                                    }}>Full description
+                                    </li>
+                                    {/*<li className={`${biblio ? 'detailActive' : 'detailInactive'}`} onClick={() => {
                                     setOverview(false);
                                     setAnnotations(false);
                                     setBiblio(true);
                                 }}>Bibliography</li>*/}
-                            </ul>
-                            <div className="detailBack" onClick={() => { window.history.back()}}>Back to results</div>
-                            <div className="detailArea">
-                            <Document item={data}/>
+                                </ul>
+                                <div className="detailBack" onClick={() => {
+                                    window.history.back()
+                                }}>Back to results
+                                </div>
+                                <div className="detailArea">
+                                    <Document item={data}/>
+                                    {fullDesc && (
+                                        <div>
+                                            <hr className="docSeparator"/>
+                                            <ExtendedDocument/></div>)}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )

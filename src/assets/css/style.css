@@ -3,6 +3,7 @@ html,
 body {
 padding: 0;
 margin: 0;
+background-color: #EADBCA;
 }
 
 * {
@@ -111,10 +112,6 @@ color: gray;
 color: #000;
 }
 
-body {
-background-color: #fff;
-color: #3e3e3e;
-}
 
 a {
 color: #0087d4;
@@ -137,7 +134,7 @@ color: #999999;
 }
 
 body {
-font-family: "Roboto", sans-serif;
+font-family: "Jura", sans-serif;
 font-weight: 300;
 font-size: 18px;
 line-height: 140%;
@@ -1736,18 +1733,22 @@ justify-content: space-between;
 .hcFacetSearch input {
 border-radius: 4px 0 0 4px;
 border-right: 0px;
+background-color: #F4ECE2;
 }
 .hcFacetSearch button {
 border-radius: 0 4px 4px 0;
+color: #dddddd;
+background-color: #265955;
 }
 
 .hcSelectedFacet {
 font-size: 0.85rem;
 padding: 0.2rem 0.5rem;
-background-color: #f6f6f6;
-border-radius: 3px;
+background-color: #F4ECE2;
+border: 1px solid #265955;
 margin: 0 0.5rem 0.5rem 0;
 cursor: pointer;
+border-radius: 6px;
 }
 
 .hcSelectedFacet:after {
@@ -2047,8 +2048,8 @@ background-image: -webkit-linear-gradient(25deg, #082045 40%, #082045 100%) !imp
 background-color: #efefef !important;
 }
 body {
-background-color: #fff;
-color: #3e3e3e;
+
+color: #000000;
 }
 
 a {
@@ -2310,10 +2311,11 @@ padding-top: 18px;
 display: block;
 width: 780px;
 min-height: 400px;
-border: 1px solid #dddddd;
+border: 1px solid #265955;
 padding: 10px 16px;
 margin: 0 0 20px 0;
-background-color: #f8f4f1;
+background-color: #F4ECE2;
+border-radius: 6px;
 }
 
 .detailLine {
@@ -2378,6 +2380,7 @@ color: #000000;
 
 .detailNav{
 list-style: none;
+border-bottom: 1px solid #265955;
 }
 
 .detailNav li{
@@ -2387,15 +2390,18 @@ border-top: 1px solid #dddddd;
 border-right: 1px solid #dddddd;
 border-left: 1px solid #dddddd;
 font-size: 14px;
+color: #dddddd;
 padding-left: 6px;
 margin-left: 0;
 margin-right: 16px;
-background-color: #eeeeee;
+background-color: #265955;
 cursor: pointer;
+border-top-right-radius: 15px;
 }
 
 .detailNav li.detailActive{
-background-color: #ffffff;
+background-color: #265955;
+color: #ffffff;
 }
 
 .detailArea{
@@ -2436,6 +2442,8 @@ padding-bottom: 4px;
 .ecoLabelCell {
 width: 180px;
 border-right: 1px solid #aaa;
+font-weight: bold;
+color: #265955;
 }
 
 .ecoCell{
@@ -2529,6 +2537,10 @@ color: #0087d4;
 
 .ecoHomeBox{
 margin-bottom: 40px;
+}
+
+.docSeparator{
+border-bottom: 1px solid #265955;
 }
 
 
