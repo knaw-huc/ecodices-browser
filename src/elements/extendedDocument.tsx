@@ -16,7 +16,7 @@ function ExtendedDocument() {
                     Permanent link
                 </div>
                 <div className="ecoCell">
-                    {document.documentURI}
+
                 </div>
             </div>
             <div className="ecoDetailRow">

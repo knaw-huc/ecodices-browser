@@ -56,7 +56,7 @@ function Collections() {
                         <div>
                             <div className="hcClickable" onClick={() => {
                                 goSearch("all")
-                            }}>All collections <strong>(191)</strong></div>
+                            }}>All collections <strong>(184)</strong></div>
                             <br/>
                             {data.map((item, index) => {
                                 return (

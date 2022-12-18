@@ -7,6 +7,7 @@ import {IResultItem, IResultList, ICollection_item, ISearchValues, IListData} fr
 import Document from "../elements/document";
 import ExtendedDocument from "../elements/extendedDocument";
 import {fromBase64} from "js-base64";
+import iiif from "../assets/img/iiif.png";
 
 function Detail() {
     const dummy: IResultItem = {
@@ -69,6 +70,22 @@ function Detail() {
         getIndex();
         setTotal(list.amount);
         setListFetched(true);
+    }
+
+    function get_image(settlement: string, shelfmark: string) {
+        let id: string = "";
+
+        if (settlement === "Den Haag") {
+            id = shelfmark.split(" ").join("_");
+        } else {
+            if (settlement === "Deventer") {
+                id = "ABD_" + shelfmark.split(" ").join("_");
+            } else {
+                id = "TRL_" + shelfmark.split(" ").join("_");
+            }
+        }
+
+        return "https://access.ecodices.nl/iiif/image/" + id + "/full/340,/0/default.jpg";
     }
 
     function getIndex() {
@@ -136,7 +153,10 @@ function Detail() {
                         <li>Viewer</li>
                         <li>Thumbnails</li>
                     </ul>
-                    <img className="facsimileImg" src={img}/>
+                    <img className="facsimileImg" src={get_image(data.settlement, data.shelfmark)}/>
+                    <div className="iiifHolder">
+                        <img className="iiifImg" src={iiif}/>
+                    </div>
                 </div>
 
                 <div className="hcLayoutResults">

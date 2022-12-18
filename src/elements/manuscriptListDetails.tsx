@@ -9,9 +9,25 @@ import {stringify} from "querystring";
 function ManuscriptListDetails(props: {result: IResultItem, index: number, filter: ISearchValues[]}) {
 
     let navigate = useNavigate();
+
+    function get_image(settlement: string, shelfmark: string) {
+        let id: string;
+
+        if (settlement === "Den Haag") {
+            id = shelfmark.split(" ").join("_");
+        } else {
+            if (settlement === "Deventer") {
+                id = "ABD_" + shelfmark.split(" ").join("_");
+            } else {
+                id = "TRL_" + shelfmark.split(" ").join("_");
+            }
+        }
+        return "https://access.ecodices.nl/iiif/image/" + id + "/full/150,/0/default.jpg";
+    }
+
     return (<div className="hcResultListDetail">
         <h2>{props.result.title}</h2>
-        <img className="hcManuscriptImage" src={img}/>
+        <img className="hcManuscriptImage" src={get_image(props.result.settlement, props.result.shelfmark)}/>
         <div className="detailLine">{props.result.place}</div>
         <div className="detailLine">{props.result.tempDate} - {props.result.language}</div>
         <div className="detailLine">{props.result.decoration}</div>
