@@ -28,10 +28,8 @@ function PageHeader() {
                     </div>
 
                     <nav>
-                        <div>persons index</div>
                         <div>browse & search</div>
                         <div>about</div>
-                        <div onClick={() => {languageSwitch()}}>{lang === 'en' ? (<img src={nlImg}/>) : (<img src={enImg}/>) }</div>
                     </nav>
                 </header>
             </div>

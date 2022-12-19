@@ -7,7 +7,7 @@ function ManuscriptList(props: {result: IResultList, filter: ISearchValues[]}) {
         <div>
         {props.result.items.map((item: IResultItem, index: number) => {
             return (
-                <ManuscriptListDetails result={item} index={index} filter={props.filter}/>
+                <ManuscriptListDetails result={item} index={index}/>
             )
             })}
         </div>)

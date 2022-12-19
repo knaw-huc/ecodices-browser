@@ -8,6 +8,7 @@ import Document from "../elements/document";
 import ExtendedDocument from "../elements/extendedDocument";
 import {fromBase64} from "js-base64";
 import iiif from "../assets/img/iiif.png";
+import {get_iiif_code} from "../misc/functions";
 
 function Detail() {
     const dummy: IResultItem = {
@@ -28,8 +29,8 @@ function Detail() {
     }
     const params = useParams();
     const id = params.id as string;
-    const filter = params.filter as string;
-    const searchValues: ISearchValues[] = JSON.parse(fromBase64(filter));
+    const view = params.state as string;
+    const searchValues: ISearchValues[] = [];
     const [loading, setLoading] = useState(true);
     const [listFetched, setListFetched] = useState(false);
     const [listData, setListData] = useState<IListData>({amount: 0, items: []});
@@ -38,11 +39,13 @@ function Detail() {
     const [total, setTotal] = useState(0);
     const [listIndex, setListIndex] = useState(0);
     const [collectionItems, setCollectionItems] = useState<ICollection_item[]>([]);
-    const [overview, setOverview] = useState(true);
-    const [fullDesc, setFullDesc] = useState(false);
+    const [overview, setOverview] = useState(isOver(view));
+    const [fullDesc, setFullDesc] = useState(isFull(view));
     const [biblio, setBiblio] = useState(false);
     const [collectionFetched, setCollectionFetched] = useState(false);
     document.title = "Manuscript | eCodices NL";
+    const [manifestCode, setManifestCode] = useState("");
+
 
     async function fetch_data() {
         const url = SERVICE + "/manuscript?id=" + esID;
@@ -50,6 +53,7 @@ function Detail() {
         const json: IResultItem | [] = await response.json();
         if (json !== []) {
             setData(json as IResultItem);
+            setManifestCode(get_iiif_code(data.settlement, data.shelfmark));
             setLoading(false);
         }
     }
@@ -70,6 +74,22 @@ function Detail() {
         getIndex();
         setTotal(list.amount);
         setListFetched(true);
+    }
+
+    function isFull(viewState: string) {
+        if (viewState === "full") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isOver(viewState: string) {
+        if (viewState === "overview") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function get_image(settlement: string, shelfmark: string) {
@@ -96,9 +116,9 @@ function Detail() {
         })
     }
 
-    useEffect(() => {
+   /* useEffect(() => {
         fetch_list_data();
-    }, [listFetched]);
+    }, [listFetched]);*/
 
     useEffect(() => {
         fetch_data();
@@ -150,8 +170,9 @@ function Detail() {
                 <div className="hcLayoutFacets">
                     <ul className="facsimileList">
                         <li>Facsimile:</li>
-                        <li>Viewer</li>
-                        <li>Thumbnails</li>
+                        <li onClick={() => {
+                            window.open("https://access.ecodices.nl/universalviewer/#?manifest=https://access.ecodices.nl/iiif/presentation/" + manifestCode + "/manifest");
+                        }}>Viewer</li>
                     </ul>
                     <img className="facsimileImg" src={get_image(data.settlement, data.shelfmark)}/>
                     <div className="iiifHolder">
@@ -191,7 +212,7 @@ function Detail() {
                                     {fullDesc && (
                                         <div>
                                             <hr className="docSeparator"/>
-                                            <ExtendedDocument/></div>)}
+                                            <ExtendedDocument item={data} manifestCode={manifestCode}/></div>)}
                                 </div>
                             </div>
                         )}

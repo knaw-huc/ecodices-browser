@@ -4,24 +4,16 @@ import {IResultItem, ISearchValues} from "../misc/interfaces";
 import img from "../assets/img/manuscript.jpg";
 import {toBase64} from "js-base64";
 import {stringify} from "querystring";
+import {get_iiif_code} from "../misc/functions";
 
 
-function ManuscriptListDetails(props: {result: IResultItem, index: number, filter: ISearchValues[]}) {
+function ManuscriptListDetails(props: {result: IResultItem, index: number}) {
 
     let navigate = useNavigate();
 
     function get_image(settlement: string, shelfmark: string) {
-        let id: string;
+        const id:string = get_iiif_code(settlement, shelfmark);
 
-        if (settlement === "Den Haag") {
-            id = shelfmark.split(" ").join("_");
-        } else {
-            if (settlement === "Deventer") {
-                id = "ABD_" + shelfmark.split(" ").join("_");
-            } else {
-                id = "TRL_" + shelfmark.split(" ").join("_");
-            }
-        }
         return "https://access.ecodices.nl/iiif/image/" + id + "/full/150,/0/default.jpg";
     }
 
@@ -40,12 +32,15 @@ function ManuscriptListDetails(props: {result: IResultItem, index: number, filte
             <ul className="ManuscriptListBtns">
                 <li onClick={() => {
                     window.scroll(0, 0);
-                    navigate('/detail/' + props.result._id + "/" + toBase64(JSON.stringify(props.filter)))}
+                    navigate('/detail/' + props.result._id + "/overview")}
                 }>Overview</li>
-                <li>Full description</li>
+                <li onClick={() => {
+                    window.scroll(0, 0);
+                    navigate('/detail/' + props.result._id + "/full")}
+                }>Full description</li>
                 <li>Viewer</li>
                 {/*<li>Description</li>*/}
-                <li>Edit CMDI</li>
+                <li>Edit XML</li>
             </ul>
         </div>
     </div>);

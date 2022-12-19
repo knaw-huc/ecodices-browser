@@ -20,7 +20,7 @@ root.render(
                     <Route path=":code" element={<Search/>}/>
                 </Route>
                 <Route path="detail" element={<Detail/>}>
-                    <Route path=":id/:filter" element={<Detail/>}/>
+                    <Route path=":id/:state" element={<Detail/>}/>
                 </Route>
             </Route>
         </Routes>

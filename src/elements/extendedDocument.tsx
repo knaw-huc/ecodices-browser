@@ -1,6 +1,7 @@
 import React from "react";
+import {IResultItem} from "../misc/interfaces";
 
-function ExtendedDocument() {
+function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
     return (<div>
         <div className="ecoDetailTable">
             <div className="ecoDetailRow">
@@ -24,7 +25,9 @@ function ExtendedDocument() {
                     IIIF Manifest URL
                 </div>
                 <div className="ecoCell">
-
+                    <div className="hcClickable" onClick={() => {
+                        window.open("https://access.ecodices.nl/iiif/presentation/" + props.manifestCode + "/manifest");
+                    }}>https://access.ecodices.nl/iiif/presentation/{props.manifestCode}/manifest</div>
                 </div>
             </div>
             <div className="ecoDetailRow">
