@@ -14,6 +14,8 @@ function Detail() {
     const dummy: IResultItem = {
         summary: "",
         binding: "",
+        support: "",
+        origin: "",
         language: "",
         tempDate: "",
         collection: "",
@@ -174,7 +176,9 @@ function Detail() {
                             window.open("https://access.ecodices.nl/universalviewer/#?manifest=https://access.ecodices.nl/iiif/presentation/" + manifestCode + "/manifest");
                         }}>Viewer</li>
                     </ul>
-                    <img className="facsimileImg" src={get_image(data.settlement, data.shelfmark)}/>
+                    <img className="facsimileImg" onClick={() => {
+                        window.open("https://access.ecodices.nl/universalviewer/#?manifest=https://access.ecodices.nl/iiif/presentation/" + manifestCode + "/manifest");
+                    }} src={get_image(data.settlement, data.shelfmark)}/>
                     <div className="iiifHolder">
                         <img className="iiifImg" src={iiif}/>
                     </div>

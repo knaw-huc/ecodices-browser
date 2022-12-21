@@ -22,34 +22,43 @@ function Document(props: {item: IResultItem}) {
         <div className="ecoDetailTable">
             <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
-                    Place of location
+                    Shelfmark
                 </div>
                 <div className="ecoCell">
-                    <div className="ecoCellClickable" onClick={() => goSearch("Place of origin", "place", props.item.place)}>{props.item.place}</div>
+                    {props.item.title}
                 </div>
             </div>
             <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
-                    Shelfmark
+                    Origin and date
                 </div>
                 <div className="ecoCell">
-                    {props.item.shelfmark}
+                    {props.item.origin}
                 </div>
             </div>
+
             <div className="ecoDetailRow">
+                <div className="ecoLabelCell">
+                    Summary
+                </div>
+                <div className="ecoCell">
+                    {props.item.summary}
+                </div>
+            </div>
+            {/*<div className="ecoDetailRow">
                 <div className="ecoLabelCell">
                     Library/collection
                 </div>
                 <div className="ecoCell">
                     <div className="" onClick={() => goSearch("Collection", "collection", props.item.collection)}>{props.item.collection}</div>
                 </div>
-            </div>
+            </div>*/}
             <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
-                    Settlement
+                    Language
                 </div>
                 <div className="ecoCell">
-                    {props.item.settlement}
+                    {props.item.language}
                 </div>
             </div>
             <div className="ecoDetailRow">
@@ -57,7 +66,23 @@ function Document(props: {item: IResultItem}) {
                     Material
                 </div>
                 <div className="ecoCell">
-                    <div className="ecoCellClickable" onClick={() => goSearch("Material", "material", props.item.material)}>{props.item.material}</div>
+                    <div className="ecoCellClickable" onClick={() => goSearch("Material", "support", props.item.support)}>{props.item.support}</div>
+                </div>
+            </div>
+            <div className="ecoDetailRow">
+                <div className="ecoLabelCell">
+                    Format
+                </div>
+                <div className="ecoCell">
+
+                </div>
+            </div>
+            <div className="ecoDetailRow">
+                <div className="ecoLabelCell">
+                    Pages
+                </div>
+                <div className="ecoCell">
+
                 </div>
             </div>
             <div className="ecoDetailRow">
@@ -68,28 +93,20 @@ function Document(props: {item: IResultItem}) {
                     <div className="ecoCellClickable" onClick={() => goSearch("Date of origin", "origDate", props.item.origDate)}>{props.item.origDate}</div>
                 </div>
             </div>
-            <div className="ecoDetailRow">
+           {/* <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
                     Dated
                 </div>
                 <div className="ecoCell">
                     {props.item.tempDate}
                 </div>
-            </div>
+            </div>*/}
             <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
                     Binding
                 </div>
                 <div className="ecoCell">
                     {props.item.binding}
-                </div>
-            </div>
-            <div className="ecoDetailRow">
-                <div className="ecoLabelCell">
-                    Summary
-                </div>
-                <div className="ecoCell">
-                    {props.item.summary}
                 </div>
             </div>
         </div>

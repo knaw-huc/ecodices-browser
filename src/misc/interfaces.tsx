@@ -50,6 +50,8 @@ export interface IResultItem {
     _id?: string,
     summary: string,
     collection: string,
+    support: string,
+    origin: string,
     material: string,
     xml: string,
     binding: string,

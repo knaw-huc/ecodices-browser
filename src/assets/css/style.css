@@ -2431,7 +2431,7 @@ font-size: 14px;
 
 .ecoLabelCell, .ecoCell {
 display: table-cell;
-padding-bottom: 30px;
+padding-bottom: 10px;
 vertical-align: top;
 }
 
@@ -2465,6 +2465,7 @@ margin-bottom: 20px;
 
 .facsimileImg{
 width: 340px;
+cursor: pointer;
 }
 
 .facetAmount{

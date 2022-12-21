@@ -186,7 +186,7 @@ function Search() {
                         <ListFacet parentCallback={sendCandidate} name="Decorations" field="has_decoration" flex={false}/>
                     )}
 
-                    <ListFacet parentCallback={sendCandidate} name="Material" field="material" flex={false}/>
+                    <ListFacet parentCallback={sendCandidate} name="Material" field="support" flex={false}/>
                     <ListFacet parentCallback={sendCandidate} name="Music Notation" field="musicnotation" flex={false}/>
                 </div>
                 <div className="hcLayoutResults">
