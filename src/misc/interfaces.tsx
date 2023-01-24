@@ -85,3 +85,9 @@ export interface ICollection_item {
     title: string,
     "_id": string
 }
+
+export interface IExtendedViewItem {
+    field: string,
+    label: string,
+    value: string
+}

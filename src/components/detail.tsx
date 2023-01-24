@@ -6,6 +6,7 @@ import {HOME, SERVICE} from "../misc/config";
 import {IResultItem, IResultList, ICollection_item, ISearchValues, IListData} from "../misc/interfaces";
 import Document from "../elements/document";
 import ExtendedDocument from "../elements/extendedDocument";
+import FullDescription from "../elements/fullDescription";
 import {fromBase64} from "js-base64";
 import iiif from "../assets/img/iiif.png";
 import {get_iiif_code} from "../misc/functions";
@@ -212,11 +213,14 @@ function Detail() {
                                 }}>Back to results
                                 </div>
                                 <div className="detailArea">
-                                    <Document item={data}/>
-                                    {fullDesc && (
-                                        <div>
+
+                                    {!fullDesc ? (<div>
+                                            <Document item={data}/>
                                             <hr className="docSeparator"/>
-                                            <ExtendedDocument item={data} manifestCode={manifestCode}/></div>)}
+                                            <ExtendedDocument item={data} manifestCode={manifestCode}/></div>)
+                                         : (
+                                             <FullDescription id={data.xml} />
+                                        )}
                                 </div>
                             </div>
                         )}

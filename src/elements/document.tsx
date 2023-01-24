@@ -25,7 +25,7 @@ function Document(props: {item: IResultItem}) {
                     Shelfmark
                 </div>
                 <div className="ecoCell">
-                    {props.item.title}
+                    {props.item.shelfmark}
                 </div>
             </div>
             <div className="ecoDetailRow">
