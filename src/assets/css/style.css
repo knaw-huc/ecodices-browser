@@ -2431,7 +2431,7 @@ font-size: 14px;
 
 .ecoLabelCell, .ecoCell {
 display: table-cell;
-padding-bottom: 10px;
+padding-bottom: 2px;
 vertical-align: top;
 }
 
@@ -2551,6 +2551,13 @@ width: 50px;
 .iiifHolder{
 text-align: center;
 width: 340px;
+}
+
+.fullviewHeader{
+font-size: 14px;
+font-weight: bold;
+color: #265955;
+display: table-cell;
 }
 
 

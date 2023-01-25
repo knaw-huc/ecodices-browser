@@ -219,7 +219,7 @@ function Detail() {
                                             <hr className="docSeparator"/>
                                             <ExtendedDocument item={data} manifestCode={manifestCode}/></div>)
                                          : (
-                                             <FullDescription id={data.xml} />
+                                             <FullDescription id={data.xml} title={data.title}/>
                                         )}
                                 </div>
                             </div>
