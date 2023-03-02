@@ -955,6 +955,8 @@ background-position: center;
 hr {
 border: none;
 height: 1px;
+margin-top: 0;
+margin-bottom: 0;
 color: rgba(0, 0, 0, 0.15);
 /* old IE */
 background-color: rgba(0, 0, 0, 0.15);
@@ -2427,6 +2429,7 @@ display: table;
 .ecoDetailRow {
 display: table-row;
 font-size: 14px;
+padding-bottom: 0;
 }
 
 .ecoLabelCell, .ecoCell {

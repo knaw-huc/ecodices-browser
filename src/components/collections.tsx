@@ -34,7 +34,7 @@ function Collections() {
             page_length: 30,
             sortorder: "title"
         };
-        if (facetValue == "all") {
+        if (facetValue === "all") {
             searchStruc.searchvalues = [];
         }
         const code: string = Base64.encode(JSON.stringify(searchStruc));
@@ -56,7 +56,7 @@ function Collections() {
                         <div>
                             <div className="hcClickable" onClick={() => {
                                 goSearch("all")
-                            }}>All collections <strong>(184)</strong></div>
+                            }}>All collections <strong>(186)</strong></div>
                             <br/>
                             {data.map((item, index) => {
                                 return (

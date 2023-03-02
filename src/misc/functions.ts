@@ -10,6 +10,5 @@ export function get_iiif_code(settlement: string, shelfmark: string): string {
             id = "TRL_" + shelfmark.split(" ").join("_");
         }
     }
-    console.log(id);
     return id;
 }

@@ -38,7 +38,7 @@ function ManuscriptListDetails(props: {result: IResultItem, index: number}) {
                     window.scroll(0, 0);
                     navigate('/detail/' + props.result._id + "/full")}
                 }>Full description</li>
-                <li>Viewer</li>
+                <li onClick={() => {window.open("https://access.ecodices.nl/universalviewer/#?manifest=https://access.ecodices.nl/iiif/presentation/" + get_iiif_code(props.result.settlement, props.result.shelfmark) + "/manifest");}}>Viewer</li>
                 {/*<li>Description</li>*/}
                 <li>Edit XML</li>
             </ul>

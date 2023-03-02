@@ -3,7 +3,7 @@ import App from './App';
 import Search from "./components/search";
 import ReactDOM from 'react-dom/client';
 import {useParams} from "react-router-dom";
-import Collections from "./components/collections";
+import Home from "./components/home";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import Detail from "./components/detail";
@@ -15,7 +15,7 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<App/>}>
-                <Route index element={<Collections/>}/>
+                <Route index element={<Home/>}/>
                 <Route path="search" element={<Search/>}>
                     <Route path=":code" element={<Search/>}/>
                 </Route>
