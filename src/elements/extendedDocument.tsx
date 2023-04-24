@@ -17,7 +17,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Permanent link
                 </div>
                 <div className="ecoCell">
-
+                    {document.URL}
                 </div>
             </div>
             <div className="ecoDetailRow">
@@ -51,7 +51,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Rights
                 </div>
                 <div className="ecoCell">
-                    Images:
+
                 </div>
             </div>
         </div>
