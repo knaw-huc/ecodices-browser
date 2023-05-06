@@ -2336,6 +2336,7 @@ color: #265955;
 
 .hcManuscriptImage {
 float: right;
+max-height: 300px;
 }
 
 .ManuscriptListBtns {

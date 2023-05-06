@@ -28,7 +28,9 @@ function Detail() {
         xml: "",
         place: "",
         decoration: "",
-        shelfmark: ""
+        shelfmark: "",
+        licence: "",
+        measure: ""
     }
     const params = useParams();
     const id = params.id as string;

@@ -2,6 +2,10 @@ import React from "react";
 import {IResultItem} from "../misc/interfaces";
 
 function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
+    let measure: string = "";
+    if (props.item.measure !== "") {
+        measure = ", " + props.item.measure + " ff";
+    }
     return (<div>
         <div className="ecoDetailTable">
             <div className="ecoDetailRow">
@@ -35,7 +39,8 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     How to quote
                 </div>
                 <div className="ecoCell">
-
+                    {props.item.title}{measure}<br/>
+                    ({document.documentURI})
                 </div>
             </div>
             <div className="ecoDetailRow">
@@ -43,7 +48,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Online since
                 </div>
                 <div className="ecoCell">
-
+                    17/05/2023
                 </div>
             </div>
             <div className="ecoDetailRow">
@@ -51,7 +56,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Rights
                 </div>
                 <div className="ecoCell">
-
+                    {props.item.licence}
                 </div>
             </div>
         </div>

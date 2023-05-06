@@ -63,7 +63,9 @@ export interface IResultItem {
     origDate: string,
     settlement: string,
     language: string,
-    shelfmark: string
+    shelfmark: string,
+    licence: string,
+    measure: string
 }
 
 

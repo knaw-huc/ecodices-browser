@@ -174,7 +174,7 @@ function Search() {
             <div className="hcLayoutFacet-Result hcBasicSideMargin hcMarginBottom15">
                 <div className="hcLayoutFacets">
                     <FreeTextFacet add={sendCandidate}/>
-                    <ListFacet parentCallback={sendCandidate} name="Collection" field="collection" flex={true}/>
+                    <ListFacet parentCallback={sendCandidate} name="Collection" field="collection" flex={false}/>
                     <ListFacet parentCallback={sendCandidate} name="Place of Origin" field="place" flex={true}/>
                     <ListFacet parentCallback={sendCandidate} name="Text Language" field="language" flex={false}/>
                     <CenturyFacet parentCallback={sendCandidate} name="Date of Origin" field="origDate"/>

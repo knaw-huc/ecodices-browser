@@ -82,7 +82,7 @@ function Document(props: {item: IResultItem}) {
                     Pages
                 </div>
                 <div className="ecoCell">
-
+                    {props.item.measure}
                 </div>
             </div>
             <div className="ecoDetailRow">
