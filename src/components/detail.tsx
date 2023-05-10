@@ -98,17 +98,7 @@ function Detail() {
     }
 
     function get_image(settlement: string, shelfmark: string) {
-        let id: string = "";
-
-        if (settlement === "Den Haag") {
-            id = shelfmark.split(" ").join("_");
-        } else {
-            if (settlement === "Deventer") {
-                id = "ABD_" + shelfmark.split(" ").join("_");
-            } else {
-                id = "TRL_" + shelfmark.split(" ").join("_");
-            }
-        }
+        const id: string = get_iiif_code(settlement, shelfmark);
 
         return "https://access.ecodices.nl/iiif/image/" + id + "/full/340,/0/default.jpg";
     }
