@@ -4,9 +4,9 @@ import {IFacetValue, ISendCandidate} from "../misc/interfaces";
 import {useState, useEffect} from "react";
 import {SERVICE} from "../misc/config";
 
-function SecListFacet(props: {parentCallback: ISendCandidate, name: string, field: string, flex: boolean}) {
+function ShelfmarkListFacet(props: {parentCallback: ISendCandidate, collection:string, flex: boolean}) {
     const [data, setData] = useState<IFacetValue[]>([]);
-    const [url, setUrl] = useState(SERVICE + "/facet?name=" + props.field + "&amount=10");
+    const [url, setUrl] = useState(SERVICE + "/shelfmark-facet?collection=" + props.collection + "&amount=10");
     const [help, setHelp] = useState(false);
     const [loading, setLoading] = useState(true);
     const [more, setMore] = useState(true);
@@ -21,14 +21,14 @@ function SecListFacet(props: {parentCallback: ISendCandidate, name: string, fiel
     }
 
     function sendCandidate(value: string) {
-        props.parentCallback({facet: props.name, field: props.field, candidate: value});
+        props.parentCallback({facet: "Shelfmark", field: "shelfmark", candidate: value});
     }
 
     function changeListLength() {
         if (more) {
-            setUrl(SERVICE + "/facet?name=" + props.field + "&amount=500");
+            setUrl(SERVICE + "/shelfmark-facet?collection=" + props.collection + "&amount=500");
         } else {
-            setUrl(SERVICE + "/facet?name=" + props.field + "&amount=10");
+            setUrl(SERVICE + "/shelfmark-facet?name=" + props.collection + "&amount=10");
         }
         setMore(!more);
     }
@@ -43,7 +43,7 @@ function SecListFacet(props: {parentCallback: ISendCandidate, name: string, fiel
 
         <div className="hcFacet">
             <div className="hcFacetTitle" onClick={() => setHidden(!hidden)}>
-                <span>{props.name}</span>
+                <span>Shelfmarks</span>
                 <span className="hcIconHelp">
                     {hidden ? (<Fragment>+</Fragment>) : (<Fragment>-</Fragment>)}
                 </span>
@@ -78,4 +78,4 @@ function SecListFacet(props: {parentCallback: ISendCandidate, name: string, fiel
 
 }
 
-export default SecListFacet;
+export default ShelfmarkListFacet;

@@ -9,7 +9,7 @@ function Home() {
 
     function goSearch(facetValue: string) {
         let searchStruc: ISearchObject = {
-            searchvalues: [{name: "Collection", field: "collection", values: [facetValue]}],
+            searchvalues: [],
             page: 1,
             page_length: 30,
             sortorder: "title"

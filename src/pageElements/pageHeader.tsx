@@ -28,8 +28,7 @@ function PageHeader() {
                     </div>
 
                     <nav>
-                        <div>browse & search</div>
-                        <div>about</div>
+                        <div className="headerLink">To the portal</div>
                     </nav>
                 </header>
             </div>

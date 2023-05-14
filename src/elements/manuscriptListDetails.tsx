@@ -24,7 +24,7 @@ function ManuscriptListDetails(props: {result: IResultItem, index: number}) {
         <div className="detailLine">{props.result.tempDate} - {props.result.language}</div>
         <div className="detailLine">{props.result.decoration}</div>
         <div className="detailLine">{props.result.material}</div>
-        <div className="detailLine"><strong>Online since: 01/11/2020</strong></div>
+        <div className="detailLine"><strong>Online since: 17/05/2023</strong></div>
         <hr/>
         <div className="detailLine">{props.result.summary}</div>
         <hr/>
@@ -40,9 +40,10 @@ function ManuscriptListDetails(props: {result: IResultItem, index: number}) {
                 }>Full description</li>
                 <li onClick={() => {window.open("https://access.ecodices.nl/universalviewer/#?manifest=https://access.ecodices.nl/iiif/presentation/" + get_iiif_code(props.result.settlement, props.result.shelfmark) + "/manifest");}}>Viewer</li>
                 {/*<li>Description</li>*/}
-                <li>Edit XML</li>
+                <li></li>
             </ul>
         </div>
+        <div className="navUp" onClick={() => {window.scroll(0,0)}}>&#8593;</div>
     </div>);
 }
 

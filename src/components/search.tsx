@@ -11,9 +11,10 @@ import {
     IResultList,
     IRemoveFacet
 } from "../misc/interfaces";
-import {Base64} from "js-base64";
+import {Base64, encodeURL} from "js-base64";
 import FreeTextFacet from "../facets/freeTextFacet";
 import ListFacet from "../facets/listFacet";
+import ShelfmarkListFacet from "../facets/shelfmarkListFacet";
 import SecListFacet from "../facets/secListFacet";
 import CenturyFacet from "../facets/centuryFacet";
 import {SERVICE, HOME} from "../misc/config";
@@ -30,6 +31,10 @@ function Search() {
     const [result, setResult] = useState<IResultList>({amount: 0, pages: 0, items: []});
     const [numberOfItems, setNumberOfItems] = useState(0);
     const [decorationsYes, setDecorationsYes] = useState(false);
+    const [shelfmarkYes, setShelfmarkYes] = useState(false);
+    const [collectionValue, setCollectionValue] = useState("");
+
+
     let navigate = useNavigate();
     document.title = "Search | eCodices NL";
 
@@ -82,6 +87,7 @@ function Search() {
 
     const removeFacet: IRemoveFacet = (field: string, value: string) => {
         searchBuffer = searchStruc;
+        console.log(field);
         if (typeof searchBuffer.searchvalues === "object") {
             searchBuffer.searchvalues.forEach((item: ISearchValues) => {
                 if (item.name === field) {
@@ -95,8 +101,14 @@ function Search() {
                 searchBuffer.searchvalues = [];
             }
         }
+
         if (field === 'Decorations') {
             setDecorationsYes(false);
+            searchBuffer.searchvalues = searchBuffer.searchvalues.filter((element) => {return element.field !== "decoration"});
+        }
+        if (field === 'Collection') {
+            setShelfmarkYes(false);
+            searchBuffer.searchvalues = searchBuffer.searchvalues.filter((element) => {return element.field !== "shelfmark"});
         }
         setSearchStruc(searchBuffer);
         setRefresh(!refresh);
@@ -109,15 +121,17 @@ function Search() {
         searchBuffer.page = 1;
         searchBuffer.searchvalues = [];
         setSearchStruc(searchBuffer);
+        setShelfmarkYes(false);
+        setDecorationsYes(false);
+        setCollectionValue("");
         setRefresh(!refresh);
-        navigate('#search/' + Base64.toBase64(JSON.stringify(searchStruc)));
+        navigate('/search/' + Base64.toBase64(JSON.stringify(searchStruc)));
         window.scroll(0, 0);
 
     }
 
     const sendCandidate: ISendCandidate = (candidate: IFacetCandidate) => {
         setPage(1);
-        console.log(candidate.field);
         switch (candidate.field) {
             case "has_decoration":
                 if (candidate.candidate === 'yes') {
@@ -126,6 +140,9 @@ function Search() {
                     setDecorationsYes(false);
                 }
                 break;
+            case "collection":
+                setShelfmarkYes(true);
+                setCollectionValue(candidate.candidate);
         }
         if (parameters.searchvalues === []) {
             parameters.searchvalues = [{
@@ -162,6 +179,7 @@ function Search() {
         setRefresh(!refresh);
     }
 
+
     useEffect(() => {
         fetch_data();
     }, [refresh]);
@@ -174,7 +192,12 @@ function Search() {
             <div className="hcLayoutFacet-Result hcBasicSideMargin hcMarginBottom15">
                 <div className="hcLayoutFacets">
                     <FreeTextFacet add={sendCandidate}/>
-                    <ListFacet parentCallback={sendCandidate} name="Collection" field="collection" flex={false}/>
+                    {shelfmarkYes ? (
+                        <ShelfmarkListFacet parentCallback={sendCandidate} collection={encodeURI(collectionValue)} flex={true}/>
+                    ) : (
+                        <ListFacet parentCallback={sendCandidate} name="Collection" field="collection" flex={false}/>
+                    )}
+
                     <ListFacet parentCallback={sendCandidate} name="Place of Origin" field="place" flex={true}/>
                     <ListFacet parentCallback={sendCandidate} name="Text Language" field="language" flex={false}/>
                     <CenturyFacet parentCallback={sendCandidate} name="Date of Origin" field="origDate"/>
@@ -197,7 +220,7 @@ function Search() {
                         <div className="hcSmallTxt hcTxtColorGreyMid">Selected facets:
                             <span className="hcFacetReset hcClickable" onClick={resetFacets}>Reset facets</span>
                         </div>
-                        {searchStruc.searchvalues === [] ? (
+                        {searchStruc.searchvalues.length === 0 ? (
                             <Fragment><span className="hcSelectedFacet"><span
                                 className="hcSelectedFacetType">None</span></span></Fragment>
                         ) : (
