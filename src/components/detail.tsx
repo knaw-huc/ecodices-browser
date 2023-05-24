@@ -30,7 +30,8 @@ function Detail() {
         decoration: "",
         shelfmark: "",
         licence: "",
-        measure: ""
+        measure: "",
+        permalink: ""
     }
     const params = useParams();
     const id = params.id as string;

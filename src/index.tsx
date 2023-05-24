@@ -22,6 +22,7 @@ root.render(
                 <Route path="detail" element={<Detail/>}>
                     <Route path=":id/:state" element={<Detail/>}/>
                 </Route>
+                <Route path="*" element={<Home/>} />
             </Route>
         </Routes>
     </BrowserRouter>

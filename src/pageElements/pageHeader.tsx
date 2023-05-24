@@ -28,7 +28,7 @@ function PageHeader() {
                     </div>
 
                     <nav>
-                        <div className="headerLink">To the portal</div>
+                        <div className="headerLink" onClick={() => {document.location ="https://ecodices.nl" }}>Project information</div>
                     </nav>
                 </header>
             </div>

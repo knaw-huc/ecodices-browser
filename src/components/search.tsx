@@ -30,11 +30,11 @@ function Search() {
     const [refresh, setRefresh] = useState(true);
     const [result, setResult] = useState<IResultList>({amount: 0, pages: 0, items: []});
     const [numberOfItems, setNumberOfItems] = useState(0);
-    const [decorationsYes, setDecorationsYes] = useState(false);
-    const [shelfmarkYes, setShelfmarkYes] = useState(false);
-    const [collectionValue, setCollectionValue] = useState("");
+    const [decorationsYes, setDecorationsYes] = useState(setDecoState(parameters.searchvalues));
+    const [shelfmarkYes, setShelfmarkYes] = useState(setShelfmarkState(parameters.searchvalues));
+    const [collectionValue, setCollectionValue] = useState(getCollectionValue(parameters.searchvalues));
 
-
+    console.log(decorationsYes);
     let navigate = useNavigate();
     document.title = "Search | eCodices NL";
 
@@ -55,10 +55,42 @@ function Search() {
     }
 
 
+
     let facets = parameters.searchvalues;
 
     const [searchStruc, setSearchStruc] = useState(searchBuffer);
     const cross: string = "[x]";
+
+    function setDecoState(lst: ISearchValues[]): boolean
+    {
+        let retVal = false;
+        lst.map((item) => {
+            if (item.field === 'has_decoration' && item.values[0] === 'yes') {
+                retVal = true;
+            }
+        });
+        return retVal;
+    }
+
+    function setShelfmarkState(lst: ISearchValues[]) {
+        let retVal = false;
+        lst.map((item) => {
+            if (item.field === 'collection') {
+                retVal = true;
+            }
+        });
+        return retVal;
+    }
+
+    function getCollectionValue(lst: ISearchValues[]) {
+        let retVal = "";
+        lst.map((item) => {
+            if (item.field === 'collection') {
+                retVal = item.values[0];
+            }
+        });
+        return retVal
+    }
 
     async function fetch_data() {
         const url = SERVICE + "/browse";
@@ -87,7 +119,7 @@ function Search() {
 
     const removeFacet: IRemoveFacet = (field: string, value: string) => {
         searchBuffer = searchStruc;
-        console.log(field);
+
         if (typeof searchBuffer.searchvalues === "object") {
             searchBuffer.searchvalues.forEach((item: ISearchValues) => {
                 if (item.name === field) {

@@ -65,7 +65,8 @@ export interface IResultItem {
     language: string,
     shelfmark: string,
     licence: string,
-    measure: string
+    measure: string,
+    permalink: string
 }
 
 

@@ -7,7 +7,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
         <div className="ecoDetailTable">
             <div className="ecoDetailRow">
                 <div className="ecoLabelCell">
-                    DOI (Digital Object Identifier)
+                    Handle
                 </div>
                 <div className="ecoCell">
 
@@ -18,7 +18,7 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Permanent link
                 </div>
                 <div className="ecoCell">
-                    {document.URL}
+                    {props.item.permalink}
                 </div>
             </div>
             <div className="ecoDetailRow">
