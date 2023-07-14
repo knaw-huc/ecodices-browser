@@ -31,7 +31,8 @@ function Detail() {
         shelfmark: "",
         licence: "",
         measure: "",
-        permalink: ""
+        permalink: "",
+        handle: ""
     }
     const params = useParams();
     const id = params.id as string;

@@ -10,7 +10,9 @@ function ExtendedDocument(props: {item: IResultItem, manifestCode: string}) {
                     Handle
                 </div>
                 <div className="ecoCell">
-
+                    <div className="hcClickable" onClick={() => {
+                        window.open(props.item.handle);
+                    }}>{props.item.handle}</div>
                 </div>
             </div>
             <div className="ecoDetailRow">
